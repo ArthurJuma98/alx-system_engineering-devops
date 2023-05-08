@@ -36,8 +36,8 @@ defaults
 #--arthurjuma.tech-params-begin--
 backend arthurjuma.tech-backend
         balance roundrobin
-        server web1 52.91.120.61 check
-        server web2 52.91.178.181 check
+        server web-01 52.91.120.61 check
+        server web-02 52.91.178.181 check
 frontend arthurjuma.tech-frontend
         bind *:80
         mode http
