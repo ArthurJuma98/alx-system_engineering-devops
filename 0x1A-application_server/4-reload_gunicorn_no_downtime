@@ -1,3 +1,15 @@
-#!/usr/bin/env bash
-# Gracefully reloads Gunicorn
-systemctl status gunicorn | grep -oE 'Main PID: [0-9]+' | cut -d ' ' -f3 | xargs kill -HUP
+#!/bin/bash
+
+# Find the process ID (PID) of the Gunicorn master process
+PID=$(pgrep gunicorn)
+
+if [ -z "$PID" ]; then
+    echo "Gunicorn is not currently running."
+    exit 1
+fi
+
+# Send a SIGHUP signal to the Gunicorn master process
+kill -HUP "$PID"
+
+echo "Gunicorn reloaded gracefully."
+
